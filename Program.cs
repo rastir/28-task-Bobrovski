@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
-namespace ConsoleApp1
+namespace Level1Space
 {
-    class Program
+    public static class Program
     {
-        static int Squirrel(int N)
+        public static int squirrel(int N)
         {
             int factorial = 1;
             if (N != 0)
@@ -13,31 +13,12 @@ namespace ConsoleApp1
                 {
                     factorial *= i;
                 }
-                //Console.WriteLine("факториал" + factorial);
-            }
             if (factorial < 10)
             {
                 return factorial;
             }
             else
                 return factorial - ((factorial % 10) / 10);
-        }
-        static int GetFirstNumber(int number)
-        {
-            if (number < 10)
-            {
-                return number;
-            }
-            return GetFirstNumber((number - (number % 10)) / 10);
-        }
-        static void Main()
-        {
-            int n = 0;
-            Console.Write("Number: ");
-            n = Convert.ToInt32(Console.ReadLine());
-            int first = GetFirstNumber(Squirrel(n));
-            Console.WriteLine(first);
-            Console.ReadLine();
         }
     }
 }
