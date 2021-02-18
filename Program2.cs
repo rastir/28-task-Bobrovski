@@ -4,7 +4,7 @@ namespace Level1Space
 {
     public static class Program
     {
-        public static int Squirrel(int N)
+        public static int squirrel(int N)
         {
             int factorial = 1;
             if (N != 0)
