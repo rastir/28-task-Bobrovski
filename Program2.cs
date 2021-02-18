@@ -1,8 +1,8 @@
 using System;
 
-namespace Squirrel
+namespace ConsoleApp1
 {
-    public static class Squirrel
+    public static class Program
     {
         static int Squirrel(int N)
         {
