@@ -1,8 +1,8 @@
 using System;
 
-namespace Level1
+namespace Level1Space
 {
-    public static class Program
+    public static class Level1
     {
         public static int squirrel(int N)
         {
