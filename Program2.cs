@@ -1,10 +1,10 @@
 using System;
 
-namespace ConsoleApp1
+namespace Squirrel
 {
-    class Program
+    public static class Squirrel
     {
-        public static int Squirrel(int N)
+        static int Squirrel(int N)
         {
             int factorial = 1;
             if (N != 0)
@@ -13,8 +13,12 @@ namespace ConsoleApp1
                 {
                     factorial *= i;
                 }
-                //Console.WriteLine("факториал" + factorial);
+            if (factorial < 10)
+            {
+                return factorial;
             }
+            else
+                return factorial - ((factorial % 10) / 10);
         }
     }
 }
