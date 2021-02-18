@@ -13,12 +13,12 @@ namespace Level1Space
                 {
                     factorial *= i;
                 }
-            if (factorial < 10)
-            {
-                return factorial;
             }
-            else
-                return factorial - ((factorial % 10) / 10);
+             while (factorial >= 10)
+             {
+                factorial /= 10;
+             }
+             return factorial;
         }
     }
 }
