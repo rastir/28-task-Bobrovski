@@ -4,7 +4,7 @@ namespace ConsoleApp1
 {
     public static class Program
     {
-        static int Squirrel(int N)
+        public static int Squirrel(int N)
         {
             int factorial = 1;
             if (N != 0)
