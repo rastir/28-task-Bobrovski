@@ -14,7 +14,7 @@ namespace Level1Space
                     if (i > 1)
                     {
                         int b = oksana[i + 1] - oksana[i - 1];
-                        distance += oksana[i] *b;
+                        distance += oksana[i] * b;
                     }
                     else 
                         distance += oksana[i] * oksana[i + 1];
