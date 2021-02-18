@@ -1,6 +1,6 @@
 using System;
 
-namespace ConsoleApp1
+namespace Level1Space
 {
     public static class Program
     {
