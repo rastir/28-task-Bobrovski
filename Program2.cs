@@ -14,11 +14,11 @@ namespace Level1Space
                     factorial *= i;
                 }
             }
-             while (factorial >= 10)
-             {
+            while (factorial >= 10)
+            {
                 factorial /= 10;
-             }
-             return factorial;
+            }
+            return factorial;
         }
     }
 }
