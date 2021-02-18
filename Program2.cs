@@ -1,6 +1,6 @@
 using System;
 
-namespace Level1Space
+namespace Level1
 {
     public static class Program
     {
