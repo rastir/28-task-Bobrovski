@@ -4,7 +4,7 @@ namespace Level1Space
     {
         public static int ConquestCampaign(int N, int M, int L, int[] battalion)
         {
-            int[,] dynarr = new int[N,M];
+            int[,] dynarr = new int[N, M];
             for (int i = 0; i < N; i++)
             {
                 for (int j = 0; j < M; j++)
@@ -13,7 +13,7 @@ namespace Level1Space
                 }
                 Console.WriteLine("");
             }
-            for (int i = 0; i < battalion.Length-1;  i++)
+            for (int i = 0; i < battalion.Length - 1; i++)
             {
                 if (i % 2 == 0)
                 {
@@ -25,35 +25,27 @@ namespace Level1Space
                     continue;
             }
             int day = 1;
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < M; j++)
-                {
-                    if (dynarr[i, j] != 0)
-                        dynarr[i, j]++;
-                }
-                Console.WriteLine("");
-            }
             bool prizn = false;
             while (prizn == false)
             {
+                day++;
                 int k = 0;
                 for (int i = 0; i < N; i++)
                 {
                     for (int j = 0; j < M; j++)
                     {
-                        //if (dynarr[i, j] != 0)
-                        //    dynarr[i, j]++;
+                        if (dynarr[i, j] != 0)
+                            dynarr[i, j]++;
                         if (dynarr[i, j] >= 2)
                         {
                             if (i > 0)
-                                dynarr[i - 1, j] ++;
+                                dynarr[i - 1, j]++;
                             if (i < N - 1)
-                                dynarr[i + 1, j] ++;
+                                dynarr[i + 1, j]++;
                             if (j > 0)
-                                dynarr[i, j - 1] ++;
+                                dynarr[i, j - 1]++;
                             if (j < M - 1)
-                                dynarr[i, j + 1] ++;
+                                dynarr[i, j + 1]++;
                         }
                     }
                 }
@@ -73,7 +65,6 @@ namespace Level1Space
                     if (prizn == true)
                         break;
                 }
-                day++;
             }
             return day;
         }
