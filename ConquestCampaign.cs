@@ -1,8 +1,10 @@
+using System;
+
 namespace Level1Space
 {
     public static class Level1
     {
-        public static int ConquestCampaign(int N, int M, int L, int[] battalion)
+                public static int ConquestCampaign(int N, int M, int L, int[] battalion)
         {
             int[,] dynarr = new int[N, M];
             for (int i = 0; i < N; i++)
@@ -11,7 +13,6 @@ namespace Level1Space
                 {
                     dynarr[i, j] = 0;
                 }
-                Console.WriteLine("");
             }
             for (int i = 0; i < battalion.Length - 1; i++)
             {
@@ -28,7 +29,6 @@ namespace Level1Space
             bool prizn = false;
             while (prizn == false)
             {
-                day++;
                 int k = 0;
                 for (int i = 0; i < N; i++)
                 {
@@ -49,21 +49,19 @@ namespace Level1Space
                         }
                     }
                 }
+                day++;
                 for (int i = 0; i < N; i++)
                 {
                     for (int j = 0; j < M; j++)
                     {
                         if (dynarr[i, j] == 0)
                             k++;
-                        else
-                            continue;
                     }
                 }
                 if (k == 0)
                 {
                     prizn = true;
-                    if (prizn == true)
-                        break;
+                    break;
                 }
             }
             return day;
