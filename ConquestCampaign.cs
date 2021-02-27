@@ -4,17 +4,17 @@ namespace Level1Space
 {
     public static class Level1
     {
-                public static int ConquestCampaign(int N, int M, int L, int[] battalion)
+        public static int ConquestCampaign(int N, int M, int L, int[] battalion)
         {
-            int[,] dynarr = new int[N, M];
-            for (int i = 0; i < N; i++)
+            int[,] dynarr = new int[N + 1, M + 1];
+            for (int i = 1; i <= N; i++)
             {
-                for (int j = 0; j < M; j++)
+                for (int j = 1; j <= M; j++)
                 {
-                    dynarr[i, j] = 0;
+                    dynarr[Level1.S(i), Level1.S(j)] = 0;
                 }
             }
-            for (int i = 0; i < battalion.Length - 1; i++)
+            for (int i = 0; i < battalion.Length; i++)
             {
                 if (i % 2 == 0)
                 {
@@ -26,6 +26,15 @@ namespace Level1Space
                     continue;
             }
             int day = 1;
+            day = WhileDo(N, M, day, dynarr);
+            return day;
+        }
+        public static int S(int indexE)
+        {
+            return indexE - 1;
+        }
+        public static int WhileDo(int N, int M, int day, int[,] dynarr)
+        {
             bool prizn = false;
             while (prizn == false)
             {
