@@ -6,7 +6,7 @@ namespace Level1Space
     {
         public static int ConquestCampaign(int N, int M, int L, int[] battalion)
         {
-            int[,] dynarr = new int[N + 1, M + 1];
+            int[,] dynarr = new int[N, M];
             for (int i = 1; i <= N; i++)
             {
                 for (int j = 1; j <= M; j++)
@@ -20,7 +20,8 @@ namespace Level1Space
                 {
                     int a = battalion[i];
                     int b = battalion[i + 1];
-                    dynarr[a, b] = 1;
+
+                    dynarr[a - 1, b - 1] = 1;
                 }
                 else
                     continue;
@@ -39,31 +40,37 @@ namespace Level1Space
             while (prizn == false)
             {
                 int k = 0;
-                for (int i = 0; i < N; i++)
+                for (int i = 1; i <= N; i++)
                 {
-                    for (int j = 0; j < M; j++)
+                    for (int j = 1; j <= M; j++)
                     {
-                        if (dynarr[i, j] != 0)
-                            dynarr[i, j]++;
-                        if (dynarr[i, j] >= 2)
+                        if (dynarr[Level1.S(i), Level1.S(j)] != 0)
+                            dynarr[Level1.S(i), Level1.S(j)]++;
+                    }
+                }
+                for (int i = 1; i <= N; i++)
+                {
+                    for (int j = 1; j <= M; j++)
+                    {
+                        if (dynarr[Level1.S(i), Level1.S(j)] >= 2)
                         {
-                            if (i > 0)
-                                dynarr[i - 1, j]++;
-                            if (i < N - 1)
-                                dynarr[i + 1, j]++;
-                            if (j > 0)
-                                dynarr[i, j - 1]++;
-                            if (j < M - 1)
-                                dynarr[i, j + 1]++;
+                            if (Level1.S(i) > 0)
+                                dynarr[Level1.S(i) - 1, Level1.S(j)]++;
+                            if (Level1.S(i) < N - 1)
+                                dynarr[Level1.S(i) + 1, Level1.S(j)]++;
+                            if (Level1.S(j) > 0)
+                                dynarr[Level1.S(i), Level1.S(j) - 1]++;
+                            if (Level1.S(j) < M - 1)
+                                dynarr[Level1.S(i), Level1.S(j) + 1]++;
                         }
                     }
                 }
                 day++;
-                for (int i = 0; i < N; i++)
+                for (int i = 1; i <= N; i++)
                 {
-                    for (int j = 0; j < M; j++)
+                    for (int j = 1; j <= M; j++)
                     {
-                        if (dynarr[i, j] == 0)
+                        if (dynarr[Level1.S(i), Level1.S(j)] == 0)
                             k++;
                     }
                 }
