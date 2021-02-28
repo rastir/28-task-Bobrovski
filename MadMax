@@ -4,7 +4,7 @@ namespace Level1Space
 {
     public static class Level1
     {
-        public static int[] MadMax(int N, int[] Tele)
+        public static int [] MadMax(int N, int [] Tele)
         {
             for (int i = 0; i < N - 1; i++)
             {
