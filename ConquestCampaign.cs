@@ -20,7 +20,6 @@ namespace Level1Space
                 {
                     int a = battalion[i];
                     int b = battalion[i + 1];
-
                     dynarr[a - 1, b - 1] = 1;
                 }
                 else
@@ -40,6 +39,19 @@ namespace Level1Space
             while (prizn == false)
             {
                 int k = 0;
+                for (int i = 1; i <= N; i++)
+                {
+                    for (int j = 1; j <= M; j++)
+                    {
+                        if (dynarr[Level1.S(i), Level1.S(j)] == 0)
+                            k++;
+                    }
+                }
+                if (k == 0)
+                {
+                    prizn = true;
+                    break;
+                }
                 for (int i = 1; i <= N; i++)
                 {
                     for (int j = 1; j <= M; j++)
@@ -66,19 +78,6 @@ namespace Level1Space
                     }
                 }
                 day++;
-                for (int i = 1; i <= N; i++)
-                {
-                    for (int j = 1; j <= M; j++)
-                    {
-                        if (dynarr[Level1.S(i), Level1.S(j)] == 0)
-                            k++;
-                    }
-                }
-                if (k == 0)
-                {
-                    prizn = true;
-                    break;
-                }
             }
             return day;
         }
