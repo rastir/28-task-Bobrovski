@@ -53,7 +53,7 @@ namespace Level1Space
                 return summ2;
             }
             else
-                return "1";
+                return "0";
         }
     }
 }
