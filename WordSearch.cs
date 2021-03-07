@@ -10,7 +10,7 @@ namespace Level1Space
             string[,] s3 = new string[len, len];
             int k = 0;
             int i;
-            int j = 0;
+            int j;
             for (i = 0; i < len; i++)
             {
                 bool twelve = false;
@@ -31,14 +31,15 @@ namespace Level1Space
                             }
                         }
                         else
+                        {
                             s3[i, j] = s1[k].ToString();
-                        if (k == s.Length - 1)
+                            k++; ;
+                        }
+                        if (k == s.Length)
                             break;
-                        else
-                            k++;
                     }
                 }
-                if (k == s.Length - 1)
+                if (k == s.Length)
                     break;
                 else
                     if ((s[k].ToString() != " ") && (s[k - 1].ToString() != " "))
@@ -96,10 +97,21 @@ namespace Level1Space
                     {
                         if (m == 0)
                         {
-                            if ((s3[c, m] == subs3) && ((s3[c, m + subs.Length] == " ") || s3[c, m + subs.Length] == null))
+                            if ((m + subs.Length) >= a + 1)
                             {
-                                result[c] = 1;
-                                break;
+                                if (s3[c, m] == subs3)
+                                {
+                                    result[c] = 1;
+                                    break;
+                                }
+                            }
+                            else if ((m + subs.Length) < a + 1)
+                            {
+                                if ((s3[c, m] == subs3) && ((s3[c, m + subs.Length] == " ") || s3[c, m + subs.Length] == null))
+                                {
+                                    result[c] = 1;
+                                    break;
+                                }
                             }
                         }
                         else if (m != 0)
