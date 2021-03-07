@@ -4,7 +4,7 @@ namespace Level1Space
 {
     public static class Level1
     {
-        public static int [] WordSearch(int len, string s, string subs)
+        public static int[] WordSearch(int len, string s, string subs)
         {
             char[] s1 = s.ToCharArray();
             string[,] s3 = new string[len, len];
@@ -26,7 +26,7 @@ namespace Level1Space
                                 break;
                             else
                             {
-                                k++; 
+                                k++;
                                 s3[i, j] = s1[k].ToString();
                             }
                         }
@@ -80,17 +80,19 @@ namespace Level1Space
                     }
                 }
                 if (w == true)
+                {
+                    a++;
                     break;
+                }
             }
-            int[] result = new int[a + 1];
-            for (int c = 0; c < a + 1; c++)
+            int[] result = new int[a];
+            for (int c = 0; c < a; c++)
             {
                 string values = s4[c].ToString();
                 string subs3 = subs.Substring(0, 1);
-                string subs4 = subs[^1..];
-                if (values.Contains(subs)) 
+                if (values.Contains(subs))
                 {
-                    for (int m = 0; m < a + 1; m++)
+                    for (int m = 0; m < a; m++)
                     {
                         if (m == 0)
                         {
