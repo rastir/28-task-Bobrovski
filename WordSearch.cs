@@ -7,11 +7,11 @@ namespace Level1Space
         public static int[] WordSearch(int len, string s, string subs)
         {
             char[] s1 = s.ToCharArray();
-            string[,] s3 = new string[len, len];
+            string[,] s3 = new string[s.Length, s.Length];
             int k = 0;
             int i;
             int j;
-            for (i = 0; i < len; i++)
+            for (i = 0; i < s.Length; i++)
             {
                 bool twelve = false;
                 for (j = 0; j < len; j++)
@@ -23,23 +23,28 @@ namespace Level1Space
                         if (((j == 0) && (s1[k].ToString() == " ")) || ((s1[k].ToString() == " ") && (s1[k + 1].ToString() == " ")))
                         {
                             if (k == s.Length - 1)
+                            {
+                                k++;
                                 break;
+                            }
                             else
                             {
                                 k++;
                                 s3[i, j] = s1[k].ToString();
+                                k++;
                             }
                         }
                         else
                         {
                             s3[i, j] = s1[k].ToString();
-                            k++; ;
+                            if (k < s.Length)
+                                k++;
                         }
-                        if (k == s.Length)
+                        if ((k == s.Length) || (s.Length <= 1))
                             break;
                     }
                 }
-                if (k == s.Length)
+                if ((k == s.Length) || (s.Length <= 1))
                     break;
                 else
                     if ((s[k].ToString() != " ") && (s[k - 1].ToString() != " "))
@@ -62,10 +67,19 @@ namespace Level1Space
                     }
                 }
             }
-            string[] s4 = new string[len];
+            for (int d = 0; d < s.Length; d++)
+            {
+                for (int b = 0; b < len; b++)
+                {
+                    Console.Write(s3[d, b] + " ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+            string[] s4 = new string[s.Length];
             bool w = false;
             int a, g;
-            for (a = 0; a < len; a++)
+            for (a = 0; a < s.Length; a++)
             {
                 for (g = 0; g < len; g++)
                 {
@@ -75,17 +89,23 @@ namespace Level1Space
                     }
                     else
                     {
+                        if (g != 0)
+                            a++;
                         w = true;
-                        Array.Resize(ref s4, a + 1);
+                        Array.Resize(ref s4, a);
                         break;
                     }
                 }
                 if (w == true)
                 {
-                    a++;
                     break;
                 }
             }
+            for (int d = 0; d < a; d++)
+            {
+                Console.Write(s4[d] + " ");
+            }
+            Console.WriteLine();
             int[] result = new int[a];
             for (int c = 0; c < a; c++)
             {
@@ -97,7 +117,7 @@ namespace Level1Space
                     {
                         if (m == 0)
                         {
-                            if ((m + subs.Length) >= a + 1)
+                            if ((m + subs.Length) >= a)
                             {
                                 if (s3[c, m] == subs3)
                                 {
@@ -105,7 +125,7 @@ namespace Level1Space
                                     break;
                                 }
                             }
-                            else if ((m + subs.Length) < a + 1)
+                            else if ((m + subs.Length) < a)
                             {
                                 if ((s3[c, m] == subs3) && ((s3[c, m + subs.Length] == " ") || s3[c, m + subs.Length] == null))
                                 {
