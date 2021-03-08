@@ -9,8 +9,9 @@ namespace Level1Space
             char[] s1 = s.ToCharArray();
             string[,] s3 = new string[s.Length, s.Length];
             int k = 0;
-            int i;
-            int j;
+            int i, j;
+            int vertical = 0;
+            int horizontal = 0;
             for (i = 0; i < s.Length; i++)
             {
                 bool twelve = false;
@@ -25,6 +26,8 @@ namespace Level1Space
                             if (k == s.Length - 1)
                             {
                                 k++;
+                                if (horizontal < j)
+                                    horizontal = j;
                                 break;
                             }
                             else
@@ -41,11 +44,19 @@ namespace Level1Space
                                 k++;
                         }
                         if ((k == s.Length) || (s.Length <= 1))
+                        {
+                            if (horizontal < j)
+                                horizontal = j;
                             break;
+                        }
                     }
                 }
                 if ((k == s.Length) || (s.Length <= 1))
+                {
+                    if (vertical < i)
+                        vertical = i;
                     break;
+                }
                 else
                     if ((s[k].ToString() != " ") && (s[k - 1].ToString() != " "))
                 {
@@ -72,7 +83,7 @@ namespace Level1Space
             int a, g;
             for (a = 0; a < s.Length; a++)
             {
-                for (g = 0; g < len; g++)
+                for (g = 0; g < horizontal+1; g++)
                 {
                     if (s3[a, g] != null)
                     {
