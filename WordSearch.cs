@@ -83,7 +83,9 @@ namespace Level1Space
             int a, g;
             for (a = 0; a < s.Length; a++)
             {
-                for (g = 0; g < horizontal+1; g++)
+                if (len >= s.Length)
+                    len = horizontal + 1;
+                for (g = 0; g < len; g++)
                 {
                     if (s3[a, g] != null)
                     {
