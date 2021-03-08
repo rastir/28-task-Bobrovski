@@ -67,15 +67,6 @@ namespace Level1Space
                     }
                 }
             }
-            for (int d = 0; d < s.Length; d++)
-            {
-                for (int b = 0; b < len; b++)
-                {
-                    Console.Write(s3[d, b] + " ");
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
             string[] s4 = new string[s.Length];
             bool w = false;
             int a, g;
@@ -101,11 +92,6 @@ namespace Level1Space
                     break;
                 }
             }
-            for (int d = 0; d < a; d++)
-            {
-                Console.Write(s4[d] + " ");
-            }
-            Console.WriteLine();
             int[] result = new int[a];
             for (int c = 0; c < a; c++)
             {
