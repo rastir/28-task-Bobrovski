@@ -48,6 +48,7 @@ namespace Level1Space
                     }
                     result += " ";
                 }
+                result = result.Trim();
                 return result;
             }
             else
@@ -97,6 +98,7 @@ namespace Level1Space
                             break;
                     }
                 }
+                result = result.Trim();
                 return result;
             }
         }
