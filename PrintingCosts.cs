@@ -105,10 +105,8 @@ namespace Level1Space
                 { '}', 18 },
                 { '~', 9 }
             };
-
             char[] massiv = Line.ToCharArray();
             int summ = 0;
-
             for (int i = 0; i < massiv.Length; i++)
             {
                 if (symbol.ContainsKey(massiv[i]))
