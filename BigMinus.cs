@@ -19,7 +19,7 @@ namespace Level1Space
                     {
                         for (i = s22.Length - 1; i >= 0; i--)
                         {
-                            if (Convert.ToInt32(s11[k]) != Convert.ToInt32(s22[i]))
+                            if (Convert.ToInt32(s11[k]) != Convert.ToInt32(s22[i]) || (s11.Length != s22.Length))
                                 Equal = true;
                             if (Convert.ToInt32(s11[k]) >= Convert.ToInt32(s22[i]))
                             {
@@ -57,7 +57,7 @@ namespace Level1Space
                     int i;
                     for (i = s11.Length - 1; i >= 0; i--)
                     {
-                        if (Convert.ToInt32(s11[k]) != Convert.ToInt32(s22[i]))
+                        if (Convert.ToInt32(s11[k]) != Convert.ToInt32(s22[i]) || (s11.Length != s22.Length))
                             Equal = true;
                         if (Convert.ToInt32(s22[k]) >= Convert.ToInt32(s11[i]))
                         {
