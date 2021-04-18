@@ -8,7 +8,7 @@ namespace Level1Space
         {
             int max = Votes[0];
             int x=0;
-            for (int i = 0; i < Votes.Length; i++) 
+            for (int i = 0; i < Votes.Length; i++)
             {
                 if (Votes[i] > max)
                 {
@@ -18,7 +18,7 @@ namespace Level1Space
             }
             x++;
             int k = 0;
-            for (int i = 0; i < Votes.Length; i++) 
+            for (int i = 0; i < Votes.Length; i++)
             {
                 if (Votes[i] == max)
                     k++;  
@@ -32,7 +32,10 @@ namespace Level1Space
                 {
                     summ += Votes[i];
                 }
-                decimal summ2 = 100 * max / summ;
+                double summ3 = Convert.ToDouble(summ);
+                double max2 = Convert.ToDouble(max);
+                double summ2;
+                summ2 = (double)(100 * max2 / summ3);
                 summ2 = Math.Round(summ2, 3);
                 if (summ2 > 50)
                     return $"majority winner {x}";
