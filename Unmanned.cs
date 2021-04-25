@@ -6,11 +6,16 @@ namespace Level1Space
     {
         public static int Unmanned(int L, int N, int[][] track)
         {
-            int tabs = 0;
-            int ts = 0;
-            bool trafficLight = false;
+            int tabs = 0; 
+            int ts = 0; 
+            bool trafficLight = false; 
+            bool trafficLightOutside = true; 
 
             int[] temp = new int[3];
+
+            if (track[0][0] <= L)
+                trafficLightOutside = false;
+
             for (int m = 0; m < track.Length - 1; m++)
             {
                 if (track[m][0] > track[m + 1][0])
@@ -19,48 +24,55 @@ namespace Level1Space
                     Array.Copy(track[m + 1], track[m], 3);
                     Array.Copy(temp, track[m + 1], 3);
                 }
+                if (track[m][0] <= L)
+                    trafficLightOutside = false;
             }
 
-            for (int m = 0; m < track.Length; m++)
+            if (trafficLightOutside == false)
             {
-                tabs = tabs + (track[m][0] - tabs) + ts;
-                ts = 0;
-                int summa = 0;
+                for (int m = 0; m < track.Length; m++)
+                {
+                    tabs = tabs + (track[m][0] - tabs) + ts;
+                    ts = 0;
+                    int summa = 0;
 
-                while (summa < tabs)
-                {
-                    summa += track[m][1];
-                    trafficLight = true;
-                    if (summa >= tabs)
-                        break;
-                    else
+                    while (summa < tabs)
                     {
-                        summa += track[m][2];
-                        trafficLight = false;
+                        summa += track[m][1];
+                        trafficLight = true;
+                        if (summa >= tabs)
+                            break;
+                        else
+                        {
+                            summa += track[m][2];
+                            trafficLight = false;
+                        }
+                        if (summa >= tabs)
+                            break;
                     }
-                    if (summa >= tabs)
-                        break;
-                }
 
-                if (trafficLight == true)
-                {
-                    ts += summa - tabs; 
-                    if (m + 1 == track.Length)
+                    if (trafficLight == true)
                     {
-                        tabs += (L - tabs) + ts; 
+                        ts += summa - tabs;
+                        if (m + 1 == track.Length)
+                        {
+                            tabs += (L - tabs) + ts;
+                        }
+                    }
+                    else if (trafficLight == false)
+                    {
+                        if (m + 1 == track.Length)
+                        {
+                            tabs += L - track[m][0];
+                        }
                     }
                 }
-                else if (trafficLight == false) 
-                {
-                    if (m + 1 == track.Length) 
-                    {
-                        tabs += L - track[m][0];
-                    }
-                }
+                if (tabs < L)
+                    tabs += L - tabs;
+                return tabs;
             }
-            if (tabs < L)
-                tabs += L - tabs;
-            return tabs;
+            else
+                return L;
         }
     }
 }
