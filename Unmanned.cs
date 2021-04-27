@@ -6,10 +6,10 @@ namespace Level1Space
     {
         public static int Unmanned(int L, int N, int[][] track)
         {
-            int tabs = 0; 
             int ts = 0; 
+            int tp = 0; 
             bool trafficLight = false; 
-            bool trafficLightOutside = true; 
+            bool trafficLightOutside = true;
 
             int[] temp = new int[3];
 
@@ -32,44 +32,50 @@ namespace Level1Space
             {
                 for (int m = 0; m < track.Length; m++)
                 {
-                    tabs = tabs + (track[m][0] - tabs) + ts;
-                    ts = 0;
+                    if (track[m][0] > L) 
+                        break;
+                    int differenceLight = 0; 
+                    if (m > 0) 
+                        differenceLight = track[m][0] - track[m - 1][0];
+                    tp +=track[m][0] - tp + differenceLight; 
                     int summa = 0;
 
-                    while (summa < tabs)
+                    while (summa < tp) 
                     {
                         summa += track[m][1];
                         trafficLight = true;
-                        if (summa >= tabs)
+                        if (summa >= tp)
                             break;
                         else
                         {
                             summa += track[m][2];
                             trafficLight = false;
                         }
-                        if (summa >= tabs)
+                        if (summa >= tp)
                             break;
                     }
 
-                    if (trafficLight == true)
+                    if (trafficLight == true) 
                     {
-                        ts += summa - tabs;
-                        if (m + 1 == track.Length)
+                        ts += summa - tp;
+                        tp += summa - tp;
+                        if (m + 1 == track.Length) 
                         {
-                            tabs += (L - tabs) + ts;
+                            tp += (L - tp); 
                         }
                     }
-                    else if (trafficLight == false)
+                    else if (trafficLight == false) 
                     {
                         if (m + 1 == track.Length)
                         {
-                            tabs += L - track[m][0];
+                            tp += L - tp;
                         }
                     }
                 }
-                if (tabs < L)
-                    tabs += L - tabs;
-                return tabs;
+                if (tp < L)
+                    tp += L - tp;
+                tp += ts;
+                return tp;
             }
             else
                 return L;
