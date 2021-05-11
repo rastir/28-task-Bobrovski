@@ -9,12 +9,14 @@ namespace Level1Space
             char[] text1 = S1.ToCharArray();
             char[] text2 = S2.ToCharArray();
             int result = 0;
+
             int y = 0;
             int k = 0;
             int a = 0;
             int b = 0;
+            bool secondstring = false;
 
-            while (result < H2 * W2)
+            while (result < H2 * W2 && a < S1.Length)
             {
                 if (text2[b] == text1[a] && text2[b].ToString() != " ")
                 {
@@ -28,6 +30,7 @@ namespace Level1Space
                         a = k + W1 + 1;
                         b++;
                         y = 0;
+                        secondstring = true;
                     }
                     else
                     {
@@ -39,7 +42,7 @@ namespace Level1Space
                 {
                     if ((text1[a].ToString() != " ") && (text2[b].ToString() != " "))
                     {
-                        if (y == W2)
+                        if ((y == W2) || (result > 0 && secondstring == true))
                         {
                             result = 0;
                             y = 0;
@@ -51,6 +54,7 @@ namespace Level1Space
                                     break;
                                 }
                             }
+                            secondstring = false;
                             b = 0;
                         }
                         else
@@ -58,14 +62,21 @@ namespace Level1Space
                             a++;
                         }
                     }
-                    if (text1[a].ToString() == " ")
-                        a++;
-                    if (text2[b].ToString() == " ")
-                        b++;
+                    if (a < S1.Length) 
+                    {
+                        if (text1[a].ToString() == " ")
+                            a++;
+                    }
+                    if (b < S2.Length)
+                    {
+                        if (text2[b].ToString() == " ")
+                            b++;
+                    }
                 }
                 if (a > H1 * W1 + (H1 - 1))
                     break;
             }
+
             if (result == H2 * W2)
                 return true;
             else
