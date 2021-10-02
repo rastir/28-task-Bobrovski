@@ -1,84 +1,135 @@
-using System;
-
 namespace Level1Space
 {
     public static class Level1
     {
         public static bool TankRush(int H1, int W1, string S1, int H2, int W2, string S2)
         {
-            char[] text1 = S1.ToCharArray();
-            char[] text2 = S2.ToCharArray();
-            int result = 0;
-
-            int y = 0;
-            int k = 0;
-            int a = 0;
-            int b = 0;
-            bool secondstring = false;
-
-            while (result < H2 * W2 && a < S1.Length)
+            if ((H2 <= H1) && (W2 <= W1))
             {
-                if (text2[b] == text1[a] && text2[b].ToString() != " ")
+                char[] Array1 = S1.ToCharArray();
+                char[] Array2 = S2.ToCharArray();
+
+                int IndexFirst1;
+
+                int IndexOf1 = 0;
+                int IndexOf2 = 0;
+                
+                int IndexOfEnd1 = W1;
+                int IndexOfEnd2 = W2;
+
+                int ArrayRange2 = 0;
+                int ArrayRange1 = 0;
+
+                bool bryak = false; 
+                bool contains2 = false;
+                int difference = 0;
+
+                bool dontgrowI = true;
+                int i = 0, j = 0;
+
+                while (i < H1) 
                 {
-                    result++;
-                    if (y == 0)
-                        k = a; 
-                    if (y < W2)
-                        y++;
-                    if (y == W2)
+                    while (j < H2) 
                     {
-                        a = k + W1 + 1;
-                        b++;
-                        y = 0;
-                        secondstring = true;
-                    }
-                    else
-                    {
-                        a++;
-                        b++;
-                    }
-                }
-                else
-                {
-                    if ((text1[a].ToString() != " ") && (text2[b].ToString() != " "))
-                    {
-                        if ((y == W2) || (result > 0 && secondstring == true))
+                        if ((i != 0) && (dontgrowI == true))
                         {
-                            result = 0;
-                            y = 0;
-                            for (int n = a; n > 0; n--)
+                            dontgrowI = true;
+                            IndexOf1 += W1 + 1; 
+                            IndexOfEnd1 = IndexOf1 + W1; 
+                        }
+                        if (j != 0)
+                        {
+                            IndexOf2 += W2 + 1; 
+                            IndexOfEnd2 = IndexOf2 + W2; 
+                        }
+
+                        string number1 = "";
+                        for (int x = IndexOf1 + difference; x < IndexOfEnd1; x++) 
+                        {
+                            number1 += Array1[x].ToString();
+                        }
+
+                        string number2 = "";
+                        for (int y = IndexOf2; y < IndexOfEnd2; y++) 
+                        {
+                            number2 += Array2[y].ToString();
+                        }
+
+                        if (number1.Contains(number2)) 
+                        {
+                            if ((i > 0) && (Array1[IndexOf1 + difference] != Array2[IndexOf2]) && (ArrayRange2 != 0) && (ArrayRange1 == H1 - 1)) 
                             {
-                                if (text1[n].ToString() == " ")
+                                bryak = true;
+                                break;
+                            }
+                            i++;
+                            j++;
+                            dontgrowI = true;
+
+                            if (ArrayRange2 == H2 - 1) 
+                            {
+                                contains2 = true;
+                                break;
+                            }
+
+                            if (ArrayRange1 == H1 - 1) 
+                            {
+                                bryak = true;
+                                break;
+                            }
+
+                            ArrayRange1++;
+                            ArrayRange2++;
+
+                            for (int b = IndexOf1; b < IndexOfEnd1; b++)
+                            {
+                                if (Array2[IndexOf2] == Array1[b])
                                 {
-                                    a = n + 1;
+                                    IndexFirst1 = b;
+                                    if (ArrayRange2 == 1)
+                                        difference = IndexFirst1 - IndexOf1;
                                     break;
                                 }
                             }
-                            secondstring = false;
-                            b = 0;
                         }
                         else
                         {
-                            a++;
+                            if (ArrayRange1 == H1 - 1) 
+                            {
+                                bryak = true;
+                                break;
+                            }
+                            IndexOf2 = 0;
+                            if (ArrayRange2 == 0)
+                            {
+                                dontgrowI = true;
+                                i++;
+                                ArrayRange1++;
+                            }
+                            j = 0;
+
+                            if (ArrayRange2 != 0)
+                            {
+                                contains2 = false;
+                                difference = 0;
+                                IndexOfEnd2 = W2;
+                                ArrayRange2 = 0;
+                                if (ArrayRange1 < H1 - 1)
+                                    dontgrowI = false;
+                                else
+                                    dontgrowI = true;
+                            }
                         }
                     }
-                    if (a < S1.Length) 
-                    {
-                        if (text1[a].ToString() == " ")
-                            a++;
-                    }
-                    if (b < S2.Length)
-                    {
-                        if (text2[b].ToString() == " ")
-                            b++;
-                    }
+                    if ((contains2 == true) || (bryak == true))
+                        break;
                 }
-                if (a > H1 * W1 + (H1 - 1))
-                    break;
+                if ((contains2 == true) && (bryak != true))
+                    return true;
+                else
+                    return false;
+                #endregion
             }
-
-            if (result == H2 * W2)
-                return true;
             else
                 return false;
         }
