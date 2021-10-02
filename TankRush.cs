@@ -128,7 +128,6 @@ namespace Level1Space
                     return true;
                 else
                     return false;
-                #endregion
             }
             else
                 return false;
