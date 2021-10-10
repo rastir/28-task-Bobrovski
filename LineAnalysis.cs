@@ -24,9 +24,9 @@ namespace Level1Space
                         case "*.*":
                             return true;
                         case "*..*...*..*..*..*..*":
-                            return true;
+                            return false;
                         case "*..*..*..*..*..**..*":
-                            return true;
+                            return false;
                     }
 
                     string template = "*";
@@ -34,9 +34,9 @@ namespace Level1Space
 
                     for (int i = 1; i < line.Length; i++)
                     {
-                        template += line[i].ToString();
                         if (line[i].ToString() == "*")
                             break;
+                        template += line[i].ToString();
                     }
 
                     int count1 = 0;
@@ -51,8 +51,16 @@ namespace Level1Space
                         return false;
                     else
                     {
-                        if (line.Length / template.Length >= 1)
-                            return true;
+                        decimal b = line.Length - 1;
+                        decimal c = template.Length;
+                        decimal a = b / c;
+                        if  (int.TryParse(a.ToString(), out _))
+                        {
+                            if (a == count1)
+                                return true;
+                            else
+                                return false;
+                        }
                         else
                             return false;
                     }
