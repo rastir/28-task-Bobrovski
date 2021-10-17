@@ -10,40 +10,75 @@ namespace Level1Space
             {
                 bool sorted = false;
                 int tmp, a, b, c;
-                while (!sorted)
-                {
-                    sorted = true;
-                    for (int i = data.Length - 1; i > 0; i--)
-                    {
-                        if (data[i] > data[i - 1])
-                            continue;
-                        else
-                        {
-                            c = data[i];
-                            b = data[i - 1];
-                            a = data[i - 2];
 
-                            while (!(c <= b && b <= a))
-                            {
-                                if (a < b) { tmp = a; a = b; b = tmp; }
-                                if (a < c) { tmp = a; a = c; c = tmp; }
-                                if (b < c) { tmp = b; b = c; c = tmp; }
-                            }
-                            data[i] = a;
-                            data[i - 1] = b;
-                            data[i - 2] = c;
+                DateTime StartTime = DateTime.UtcNow;
+                DateTime EndTime;
+                double differenceInSecond;
+
+                TimeSpan diff;
+                bool timeOver = false;
+
+                while ((!sorted) || timeOver == true)
+                {
+                    Random rnd = new Random();
+                    sorted = true;
+                    int i = rnd.Next(0, data.Length - 1);
+                    if ((i + 2) > (data.Length - 1))
+                        i = data.Length - 3;
+
+                    a = data[i];
+                    b = data[i + 1];
+                    c = data[i + 2];
+
+                    int count = 0;
+                    while (!(a <= b && b <= c) || timeOver == true || count == 3)
+                    {
+                        tmp = a; 
+                        a = b; 
+                        b = c; 
+                        c = tmp;
+
+                        count++;
+                        EndTime = DateTime.UtcNow;
+                        diff = EndTime - StartTime;
+                        differenceInSecond = diff.TotalSeconds;
+                        if (differenceInSecond > 1)
+                        {
+                            timeOver = true;
+                            sorted = false;
+                            break;
+                        }
+                        else
+                            continue;
+                    }
+                    if (timeOver == true)
+                        break;
+                    data[i] = a;
+                    data[i + 1] = b;
+                    data[i + 2] = c;
+
+                    for (int j = 0; j < data.Length - 1; j++)
+                    {
+                        if (data[j] > data[j + 1])
+                        {
                             sorted = false;
                         }
                     }
-                }
-                for (int i = 0; i < data.Length - 1; i++)
-                {
-                    if (data[i] > data[i + 1])
+                    EndTime = DateTime.UtcNow;
+                    diff = EndTime - StartTime;
+                    differenceInSecond = diff.TotalSeconds;
+                    if (differenceInSecond > 1)
                     {
-                        return false;
+                        timeOver = true;
+                        break;
                     }
+                    else
+                        continue;
                 }
-                return true;
+                if (sorted == true)
+                    return true;
+                else
+                    return false;
             }
         }
     }
