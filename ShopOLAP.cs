@@ -4,7 +4,7 @@ namespace Level1Space
 {
     public static class Level1
     {
-               public static string[] ShopOLAP(int N, string[] items)
+        public static string[] ShopOLAP(int N, string[] items)
         {
             string[] subs1;
             string[] subs2;
@@ -21,18 +21,18 @@ namespace Level1Space
                 array1[i + 1] = subs1[1];
                 sum = Convert.ToInt32(array1[i + 1]);
 
-                for (int x = 0; x < items.Length - 1; x++)
+                for (int x = 0; x < items.Length; x++)
                 {
                     if (i != x)
                     {
                         string str2 = items[x].ToString();
                         subs2 = str2.Split();
-                        array2[x] = subs2[0];
-                        array2[x + 1] = subs2[1];
+                        string array2x = subs2[0];
+                        string array2x1 = subs2[1];
 
-                        if (array1[i].CompareTo(array2[x]) == 0)
+                        if (array1[i].CompareTo(array2x) == 0)
                         {
-                            sum += Convert.ToInt32(array2[x + 1]);
+                            sum += Convert.ToInt32(array2x1);
                             items[i] = string.Join(" ", array1[i], sum);
 
                             for (int j = x; j < items.Length - 1; j++)
