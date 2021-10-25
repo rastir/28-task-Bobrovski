@@ -4,10 +4,10 @@ namespace Level1Space
 {
     public static class Level1
     {
-       public static string[] ShopOLAP(int N, string[] items)
+               public static string[] ShopOLAP(int N, string[] items)
         {
-            string[] subs1; 
-            string[] subs2; 
+            string[] subs1;
+            string[] subs2;
 
             string[] array1 = new string[items.Length];
             string[] array2 = new string[items.Length];
@@ -21,7 +21,7 @@ namespace Level1Space
                 array1[i + 1] = subs1[1];
                 sum = Convert.ToInt32(array1[i + 1]);
 
-                for (int x = 0; x < items.Length; x++)
+                for (int x = 0; x < items.Length - 1; x++)
                 {
                     if (i != x)
                     {
@@ -34,12 +34,12 @@ namespace Level1Space
                         {
                             sum += Convert.ToInt32(array2[x + 1]);
                             items[i] = string.Join(" ", array1[i], sum);
-                            
+
                             for (int j = x; j < items.Length - 1; j++)
                             {
                                 items[j] = items[j + 1];
                             }
-                            
+
                             x--;
                             Array.Resize(ref items, items.Length - 1);
                         }
@@ -48,9 +48,9 @@ namespace Level1Space
             }
 
             string[] arr1 = new string[items.Length];
-            string[] sub1; 
+            string[] sub1;
             string[] arr2 = new string[items.Length];
-            string[] sub2; 
+            string[] sub2;
             bool sort = false;
 
             while (sort == false)
