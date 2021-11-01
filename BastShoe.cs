@@ -103,6 +103,7 @@ namespace Level1Space
                             {
                                 S += last4.Undostr;
                             }
+                            op4.str = last4.Undostr;
                             op4.Undostr = last4.str;
                             op4.command = burr;
                             op4.Undocommand = last4.command;
@@ -127,7 +128,7 @@ namespace Level1Space
                         if (last5.Undocommand == 2)
                         {
                             if (S.EndsWith(last5.str))
-                                S.Substring(0, S.Length - last5.str.Length);
+                                S = S.Substring(0, S.Length - last5.str.Length);
                             op5.Undocommand = 0;
                             op5.Undostr = "";
                             op5.command = 2;
