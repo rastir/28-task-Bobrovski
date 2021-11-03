@@ -96,7 +96,7 @@ namespace Level1Space
 
                 case 3:
                     LastCursor = false;
-                    if ((Convert.ToInt32(comanda) > S.Length) || String.IsNullOrEmpty(S) || Convert.ToInt32(comanda) < 0)
+                    if ((Convert.ToInt32(comanda) > S.Length - 1) || String.IsNullOrEmpty(S) || Convert.ToInt32(comanda) < 0)
                         return "";
                     else
                         return S[Convert.ToInt32(comanda)].ToString();
