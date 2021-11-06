@@ -5,11 +5,10 @@ namespace Level1Space
 {
     public static class Level1
     {
-        public static List<string> arr = new List<string>();
-
         public static string BiggerGreater(string input)
         {
-            if (String.IsNullOrEmpty(input))
+            List<string> arr = new List<string>();
+            if (String.IsNullOrEmpty(input)) 
                 return "";
 
             for (int i = 0; i < input.Length - 1; i++)
@@ -35,7 +34,6 @@ namespace Level1Space
                     string str1 = input.Substring(0, i + a);
                     string str2 = "";
 
-                    //int y = a + 1;
                     for (int c = 0; c < str1.Length; c++)
                     {
                         str2 += word[c];
