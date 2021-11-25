@@ -7,65 +7,51 @@ namespace Level1Space
     {
        public static bool TransformTransform(int[] A, int N)
         {
-            int[] B = new int[N];
-            int k = 0;
-            int r = N;
-            int key;
+            List<int> B = new List<int>();
+            int k;
+            int maxValue;
 
-            for (int i = 0; i < N - 1; i++)
+            for (int i = 0; i < A.Length - 1; i++)
             {
-                for (int j = 0; j < N - i - 1; j++)
+                for (int j = 0; j < A.Length - i - 1; j++)
                 {
                     k = i + j;
-                    int maxValue = int.MinValue;
-                    for (int x = j; x < k; x++)
+                    maxValue = 0;
+
+                    for (int x = j; x <= k; x++)
                     {
                         if (A[x] > maxValue)
                         {
-                            // найден больший элемент
                             maxValue  = A[x];
                         }
                     }
-                    if (r > 0)
-                        B[r - 1] = maxValue;
-                    else if (r == 0)
-                        B[r] = maxValue;
-                    if (r > 0)
-                        r--;
+                        B.Add(maxValue);
                 }
             }
+            
+            List<int> C = new List<int>();
 
-            int[] C = new int[N];
-            int k2 = 0;
-            int r2 = N;
-
-            for (int i = 0; i < N - 1; i++)
+            for (int i = 0; i < B.Count - 1; i++)
             {
-                for (int j = 0; j < N - i - 1; j++)
+                for (int j = 0; j < B.Count - i - 1; j++)
                 {
-                    k2 = i + j;
-                    int maxValue = int.MinValue;
-                    for (int x = j; x < k; x++)
+                    k = i + j;
+                    maxValue = 0;
+                    for (int x = j; x <= k; x++)
                     {
                         if (B[x] > maxValue)
                         {
-                            // найден больший элемент
                             maxValue = B[x];
                         }
                     }
-                    if (r > 0)
-                        C[r - 1] = maxValue;
-                    else if (r == 0)
-                        C[r] = maxValue;
-                    if (r > 0)
-                        r--;
+                    C.Add(maxValue);
                 }
             }
-
+           
             int summ = 0;
-            for (int i = 0; i < N; i++)
+            for (int x = 0; x < C.Count; x++)
             {
-                summ += C[i];
+                summ += C[x];
             }
 
             if (summ % 2 == 0)
