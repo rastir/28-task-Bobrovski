@@ -11,10 +11,10 @@ namespace Level1Space
             int k;
             int maxValue;
 
-            for (int i = 0; i < A.Length - 1; i++)
+            for (int i = 0; i <= A.Length - 1; i++)
             {
 
-                for (int j = 0; j < A.Length - i - 1; j++)
+                for (int j = 0; j <= A.Length - i - 1; j++)
                 {
                     k = i + j;
                     maxValue = 0;
@@ -23,19 +23,17 @@ namespace Level1Space
                     {
                         if (A[x] > maxValue)
                         {
-                            // найден больший элемент
                             maxValue  = A[x];
                         }
                     }
                         B.Add(maxValue);
                 }
             }
-
             List<int> C = new List<int>();
 
-            for (int i = 0; i < B.Count - 1; i++)
+            for (int i = 0; i <= B.Count - 1; i++)
             {
-                for (int j = 0; j < B.Count - i - 1; j++)
+                for (int j = 0; j <= B.Count - i - 1; j++)
                 {
                     k = i + j;
                     maxValue = 0;
@@ -47,8 +45,7 @@ namespace Level1Space
                             maxValue = B[x];
                         }
                     }
-                    //if (maxValue > 0)
-                        C.Add(maxValue);
+                    C.Add(maxValue);
                 }
             }
 
@@ -62,62 +59,6 @@ namespace Level1Space
                 return true;
             else
                 return false;
-        }
-
-        public static int TransformTransform2(int[] A, int N)
-        {
-            List<int> B = new List<int>();
-            int k;
-            int maxValue;
-
-            for (int i = 0; i < A.Length - 1; i++)
-            {
-
-                for (int j = 0; j < A.Length - i - 1; j++)
-                {
-                    k = i + j;
-                    maxValue = 0;
-
-                    for (int x = j; x <= k; x++)
-                    {
-                        if (A[x] > maxValue)
-                        {
-                            // найден больший элемент
-                            maxValue = A[x];
-                        }
-                    }
-                    B.Add(maxValue);
-                }
-            }
-
-            List<int> C = new List<int>();
-
-            for (int i = 0; i < B.Count - 1; i++)
-            {
-                for (int j = 0; j < B.Count - i - 1; j++)
-                {
-                    k = i + j;
-                    maxValue = 0;
-                    for (int x = j; x <= k; x++)
-                    {
-                        if (B[x] > maxValue)
-                        {
-                            // найден больший элемент
-                            maxValue = B[x];
-                        }
-                    }
-                    //if (maxValue > 0)
-                    C.Add(maxValue);
-                }
-            }
-
-            int summ = 0;
-            for (int x = 0; x < C.Count; x++)
-            {
-                summ += C[x];
-            }
-
-            return summ;
         }
     }
 }
