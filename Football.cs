@@ -9,6 +9,7 @@ namespace Level1Space
         {
             int startindex = 0;
             int endindex = 0;
+            bool true_startindex = false;
 
             bool notOrder = false;
             int[] F_copy = new int[N];
@@ -19,8 +20,11 @@ namespace Level1Space
             {
                 if (F[i - 1] > F[i])
                 {
-                    if (startindex == 0)
+                    if (startindex == 0 && true_startindex == false)
+                    {
                         startindex = i - 1;
+                        true_startindex = true;
+                    }
                 }
                 if (i > 1 && F[i] > F[i - 1] && F[i - 2] > F[i - 1])
                 {
@@ -29,7 +33,7 @@ namespace Level1Space
                 }
             }
             if (endindex == 0)
-                endindex = startindex + 1;
+                endindex = startindex + (N - (startindex + 1));
             temp = F_copy[startindex];
             F_copy[startindex] = F_copy[endindex];
             F_copy[endindex] = temp;
@@ -43,7 +47,8 @@ namespace Level1Space
                 return true;
             else
             {
-                Array.Reverse(F, startindex, startindex - endindex + 1);
+                Array.Reverse(F, startindex,  endindex - startindex + 1);
+
                 for (int i = 1; i < F.Length; i++)
                 {
                     if (F[i] < F[i - 1])
